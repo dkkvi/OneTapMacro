@@ -1,0 +1,6 @@
+package-as: OneTapMacro
+
+ignore:
+  - README.md
+  - .gitignore
+  - .pkgmeta
