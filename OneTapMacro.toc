@@ -1,8 +1,8 @@
 ## Interface: 16001
 ## Title: One Tap Macro
-## Notes: Hover a spell and press a key to turn it into a macro.
+## Notes: Hover a spell and press Ctrl+Alt to turn it into a macro.
 ## Author: dkkvi
-## Version: 0.1.0
+## Version: 0.2.0
 ## SavedVariables: OneTapMacroDB
 
 Core.lua

@@ -13,10 +13,12 @@ Hover a spell on your action bars or in your spellbook and press Ctrl and Alt to
 ```
 #showtooltip
 /startattack
-/cast {spell}
+/cast [@mouseover,harm,nodead][] {spell}
 ```
 
 `{spell}` becomes the spell's name, and leaving out the rank means you always cast the highest one you know.
+
+Hovering an enemy? Then the spell goes to them, great for interrupting something you're not targeting. Your auto attack stays on whatever you were hitting. Not hovering anything, it just goes to your target like normal.
 
 On an action bar the macro takes the spell's spot right away. From the spellbook it ends up on your cursor, so you can drop it wherever you want.
 
