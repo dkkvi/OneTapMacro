@@ -6,7 +6,11 @@
 -- the old key binding from before ctrl+alt, cleared once at login
 local OLD_BIND = "ONETAPMACRO_CREATE"
 
-local DEFAULT_TEMPLATE = "#showtooltip\n/startattack\n/cast {spell}"
+-- casts at the enemy under your mouse if there is one, otherwise your target.
+-- /startattack stays on your target either way
+local DEFAULT_TEMPLATE = "#showtooltip\n/startattack\n/cast [@mouseover,harm,nodead][] {spell}"
+-- the default before mouseover, so an untouched copy of it gets upgraded
+local OLD_DEFAULT_TEMPLATE = "#showtooltip\n/startattack\n/cast {spell}"
 -- the ? icon makes a macro follow #showtooltip
 local DYNAMIC_ICON = 134400
 local MACRO_NAME_MAX = 16
@@ -178,7 +182,9 @@ events:RegisterEvent("MODIFIER_STATE_CHANGED")
 events:SetScript("OnEvent", function(_, event)
 	if event == "PLAYER_LOGIN" then
 		OneTapMacroDB = OneTapMacroDB or {}
-		OneTapMacroDB.template = OneTapMacroDB.template or DEFAULT_TEMPLATE
+		if not OneTapMacroDB.template or OneTapMacroDB.template == OLD_DEFAULT_TEMPLATE then
+			OneTapMacroDB.template = DEFAULT_TEMPLATE
+		end
 		-- bindings can't change in combat, e.g. a /reload mid-fight
 		local oldKeys = InCombatLockdown() and {} or { GetBindingKey(OLD_BIND) }
 		for _, key in ipairs(oldKeys) do
